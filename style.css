@@ -116,3 +116,9 @@ nav .container-fluid {
   color: #FFFFFF;
   margin: 0px 0px 3px 0px;
 }
+
+.construction-page {
+  margin-top: 20%;
+  background-color: #d1605c;
+  color: #FFFFFF;
+}

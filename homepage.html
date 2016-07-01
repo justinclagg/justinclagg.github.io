@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 	<title>Justin Clagg</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Portfolio page of Justin Clagg.">
+	<meta name="author" content="Justin Clagg">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-default" role="navigation" id="the-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <!-- Menu button for small screens -->
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+	        <!-- Improves usability for screen readers -->
+	        <span class="sr-only">Toggle navigation</span>
+	        <!-- Menu Icon -->
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <!--<a class="navbar-brand" href="#">Justin Clagg</a>-->
+	    </div>
+	    <!-- Navigation menu -->
+	    <div class="collapse navbar-collapse navbar-right" id="myNavBar">
+	      <ul class="nav navbar-nav">
+	        <li><a href="#about-page">About</a></li>
+	        <li><a href="#portfolio-page">Portfolio</a></li>
+	        <li><a href="#contact-page">Contact</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	  <!-- /.container-fluid -->
+	</nav>
+
+	<!-- Main Page -->
+	<!-- jumbotron bootstrap class adjusts to screen size -->
+	<div id="intro-page" class="jumbotron text-center">
+	  <h1>Justin Clagg</h1>
+	  <p>Porfolio under construction</p>
+	</div>
+
+	<div id="about-page" class="container-fluid">
+	  <div class="row">
+	    <div class="col-sm-8">
+	      <h2>About Me</h2>
+	      <p>Hello, my name is Justin Clagg and this is a portfolio page I'm working on.</p>
+	      <p>I'm currently working through the <a href="http://www.freecodecamp.com/" target="_blank">FreeCodeCamp.com</a> curriculum, which teaches full stack development. This portfolio page is one of my projects there.</p>
+	    </div>
+	    <div id="portrait" class="col-sm-4">
+	      <img class="thumbnail" src="https://avatars0.githubusercontent.com/u/12601203" alt="Justin Clagg">
+	    </div>
+	  </div>
+	</div>
+
+	<div id="portfolio-page" class="container-fluid text-center">
+	  <h2>Portfolio</h2>
+	  <h4>Some of my work so far</h4>
+	  <div class="row text-center">
+	    <div class="col-sm-4">
+	      <div class="thumbnail">
+	        <a href="#" target="_blank">
+	          <img src="http://www.hanherz.com/wp-content/uploads/2015/01/coming-soon-placeholder.gif" alt="Coming Soon">
+	        </a>
+	        <p><strong>Under Construction</strong></p>
+	      </div>
+	    </div>
+	    <div class="col-sm-4">
+	      <div class="thumbnail">
+	        <a href="http://codepen.io/justinclagg/pen/OMbYLj/" target="_blank">
+	          <img src="http://i68.tinypic.com/dliati.png" alt="Hexadecimal Clock">
+	        </a>
+	        <p><strong>Hexadecimal Clock</strong></p>
+	        <p>A digital clock that shows the background color as a hexidecimal representation of the current time.</p>
+	        <p><i>jQuery, Bootstrap</i></p>
+	      </div>
+	    </div>
+	    <div class="col-sm-4">
+	      <div class="thumbnail">
+	        <a href="#" target="_blank">
+	          <img src="http://www.hanherz.com/wp-content/uploads/2015/01/coming-soon-placeholder.gif" alt="Coming Soon">
+	        </a>
+	        <p><strong>Under Construction</strong></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="contact-page" class="container-fluid">
+	  <div class="row">
+	    <div class="col-sm-6" id="contact-text">
+	      <h2>Contact</h2>
+	      <p>Send an email to the address below for the quickest response.</p>
+	      <p><span class="glyphicon glyphicon-envelope"></span> Justinclagg@gmail.com</p>
+	    </div>
+	    <div class="col-sm-3"></div>
+	    <div class="col-sm-3 text-center">
+	      <div class="row">
+	        <a href="https://www.linkedin.com/in/justinclagg" target="_blank">
+	          <button class="btn btn-block btn-lg"><i class="fa fa-linkedin-square"></i> LinkedIn</button>
+	        </a>
+	      </div>
+	      <div class="row">
+	        <a href="https://github.com/justinclagg" target="_blank">
+	          <button class="btn btn-block btn-lg"><i class="fa fa-github"></i> GitHub</button>
+	        </a>
+	      </div>
+	      <div class="row">
+	        <a href="https://twitter.com/justin_clagg" target="_blank">
+	          <button class="btn btn-block btn-lg"><i class="fa fa-twitter"></i> Twitter</button>
+	        </a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="footer" class="container-fluid text-center">
+	  <a href="#the-top">
+	    <span class="glyphicon glyphicon-chevron-up"></span>
+	  </a>
+	  <p>Justin Clagg - <span id="current-year"></span></p>
+	</div>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>

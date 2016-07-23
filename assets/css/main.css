@@ -1,0 +1,124 @@
+/* media queries */
+/* Mobile devices */
+@media screen and (max-width: 200px) {
+  /* Ancestor added to the selector makes the media query take priority */
+  body #about-page #portrait .thumbnail {
+    width: 100px;
+  }
+}
+/* Mobile devices */
+@media (min-width: 201px) and (max-width: 480px) {
+  /* Ancestor added to the selector makes the media query take priority */
+  body #about-page #portrait .thumbnail {
+    width: 150px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  body #about-page #portrait .thumbnail {
+    width: 40%;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+  body #about-page #portrait .thumbnail {
+    width: 100%;
+  }
+}
+/* tablets/desktops and up */
+@media (min-width: 992px) and (max-width: 1199px) {
+  body #about-page #portrait .thumbnail {
+    width: 80%;
+  }
+}
+/* large desktops and up */
+@media screen and (min-width: 1200px) {
+  body #about-page #portrait .thumbnail {
+    width: 80%;
+  }
+}
+
+body {
+  font-family: Montserrat, Sans-Serif;
+}
+
+a {
+  color: #d1605c;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.container-fluid {
+  padding: 50px 50px 50px 50px;
+}
+
+nav .container-fluid {
+  padding: 0px 0px 0px 0px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #d1605c;
+    z-index: 9999;
+    border: 0;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-collapse li a {
+  color: #FFFFFF;
+}
+
+.navbar-default .navbar-collapse li a:hover {
+  background-color: #FFFFFF;
+  color: #d1605c;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+
+#intro-page {
+  background-color: #d1605c;
+  color: #FFFFFF;
+  padding: 100px 0px 100px 0px;
+}
+
+#about-page #portrait img {
+  width: 100%;
+  border-radius: 10%;
+}
+
+#portfolio-page {
+  background-color: #f6f6f6;
+}
+
+#portfolio-page .thumbnail {
+  padding: 0px 0px 10px 0px;
+  margin: 20px 0px 0px 0px;
+  border: none;
+  width: 100%;
+}
+
+#contact-page #contact-text {
+  margin: -25px 0px 0px 0px;
+}
+
+#contact-page button {
+  background-color: #d1605c;
+  color: #FFFFFF;
+  margin: 0px 0px 3px 0px;
+}
+
+.construction-page {
+  margin-top: 20%;
+  background-color: #d1605c;
+  color: #FFFFFF;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Simon</title>
+	<meta name="description" content="Play the game of Simon in your browser.">
+	<meta name="author" content="Justin Clagg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="script.js" defer></script>
+<body>
+	<h1>Simon</h1>
+	<div class="flex-row">
+		<div id="green" class="square"></div>
+		<div id="red" class="square"></div>
+	</div>
+	<div class="flex-row">
+		<div id="yellow" class="square"></div>
+		<div id="blue" class="square"></div>
+	</div>
+	<div class="button-row">
+		<button id="startBtn" class="mode-buttons">Start</button>
+		<button id="resetBtn" class="mode-buttons">Reset</button>
+		<button id="strictBtn" class="mode-buttons">Strict</button>
+	</div>
+	<div class="round-number">Round <span id="roundNum">1</span></div>
+</body>
+</html>

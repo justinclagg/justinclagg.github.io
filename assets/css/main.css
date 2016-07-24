@@ -95,6 +95,7 @@ h1 {
 
 /* Fills cell to make them square */
 .square::after {
+	display: table;
   content: "";
   padding-bottom: 70%;
 }

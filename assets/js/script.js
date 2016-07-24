@@ -1,26 +1,23 @@
 $(document).ready(function() {
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+	"use strict";
 
-    // Prevent default anchor click behavior
-    event.preventDefault();
+	var activeNav = "#portfolio-nav";
 
-    // Store hash
-    var hash = this.hash;
+	// Change active page
+	$("#nav-links > ul> li > a").click(function() {
+		$(activeNav).removeClass("active-nav");
+		$(this).addClass("active-nav");
+		activeNav = "#" + $(this).attr("id");
+	});
 
-    // Using jQuery's animate() method to add smooth page scroll
-    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top
-    }, 500, function() {
 
-      // Add hash (#) to URL when done scrolling (default click behavior)
-      window.location.hash = hash;
-    });
-  });
 
-  // Place current year in footer
-  var dateVal = new Date();
-  var yearVal = dateVal.getFullYear();
-  $("#footer #current-year").text(yearVal);
-})
+
+
+
+
+	// Place current year in footer
+	var dateVal = new Date();
+	var yearVal = dateVal.getFullYear();
+	$("#current-year").text(yearVal);
+});

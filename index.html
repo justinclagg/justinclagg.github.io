@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Justin Clagg</title>
+ 	<title>Justin Clagg</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Portfolio page of Justin Clagg.">
 	<meta name="author" content="Justin Clagg">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="./assets/css/main.css" rel="stylesheet" type="text/css">
-	<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,300,100,700,500' rel='stylesheet' type='text/css'>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" media="screen">
+	<link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+	<link href="./assets/css/main.css" rel="stylesheet" type="text/css">
 </head>
-<body class="text-center construction-page">
-	<h1><i class="fa fa-code" aria-hidden="true"></i> Under Construction</h1>
+
+<body id="portfolio-page">
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-default" role="navigation" id="nav">
+		<div class="container">
+			<div class="navbar-header">
+			<!-- Menu button for small screens -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-links">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Justin Clagg</a>
+			</div>
+			<!-- Navigation menu -->
+			<div class="collapse navbar-collapse navbar-right" id="nav-links">
+			<ul class="nav navbar-nav">
+				<li><a href="#about" id="about-nav">About</a></li>
+				<li><a class="active-nav" href="#" id="portfolio-nav">Portfolio</a></li>
+				<li><a href="#contact" id="contact-nav">Contact</a></li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	<!--./Navigation Bar-->
+	<section class="lg-banner">
+		<div class="vcenter">
+			<h1>Front-end Development</h1>
+			<h2>HTML &#8226; CSS &#8226; Javascript &#8226; jQuery</h2>
+		</div>
+	</section>
+	<section id="my-work">
+		<h1>Selected Work</h1>
+		<div class="flex-row">
+			<a href="#" id="" class="square">
+				Coming Soon
+			</a>
+			<a href="../tic-tac-toe/index.html" id="" class="square">
+				<div class="img-overlay">
+					<h2>Tic Tac Toe</h2>
+					<p>A game of Tic Tac Toe with multiple difficulty levels. Created with jQuery.</p>
+				</div>
+				<img src="./assets/img/tictactoe_thumbnail.png" class="img-responsive">
+			</a>
+			<a href="#" id="" class="square">
+				Coming Soon
+			</a>
+		</div>
+		<div class="flex-row">
+			<a href="#" id="" class="square">
+				Coming Soon
+			</a>
+			<a href="#" id="" class="square">
+				Coming Soon
+			</a>
+			<a href="#" id="" class="square">
+				Coming Soon
+			</a>
+		</div>
+	</section>
+	<div class="push"></div>
+	<footer>
+	  <p>Copyright © <span id="current-year"></span> Justin Clagg</p>
+	</footer>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="./assets/js/script.js"></script>
 </body>
 </html>

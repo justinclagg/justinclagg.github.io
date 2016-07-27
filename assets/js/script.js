@@ -12,6 +12,6 @@ $(document).ready(function() {
 			dataType: "json"
 		});
 		$(".form-header").text("Your message has been sent!");
-		event.preventDefault();
+		return false;
 	});
 });

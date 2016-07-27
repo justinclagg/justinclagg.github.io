@@ -20,8 +20,6 @@ $(document).ready(function() {
 		}).done(function() {
 			$(".form-header").text("Your message has been sent!");
 			name.value = email.value = message.value = "";
-		}).fail(function() {
-			$(".form-header").text("Sorry, there was an error!");
 		});
 
 		return false;  // Prevents page reload

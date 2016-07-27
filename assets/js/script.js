@@ -19,9 +19,11 @@ $(document).ready(function() {
 			dataType: "json"
 		}).done(function() {
 			$(".form-header").text("Your message has been sent!");
+			$(".form-message").text("Thanks for reaching out! I will get back to you as soon as possible.");
 			name.value = email.value = message.value = "";
 		}).fail(function() {
-			$(".form-header").text("Sorry, there was an error!");			
+			$(".form-header").text("Sorry, there was an error!");
+			$(".form-message").text("Please make sure all fields are filled out correctly.");
 		});
 
 		event.preventDefault();  // Prevents page reload

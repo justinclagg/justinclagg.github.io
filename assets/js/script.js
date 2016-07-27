@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	"use strict";
 
-	$("#contact-form").submit(function() {
+	$("#contact-form").submit(function(event) {
 		var message = $(this).serialize();
 		console.log(message);
 		$.ajax({
@@ -12,5 +12,6 @@ $(document).ready(function() {
 			dataType: "json"
 		});
 		$(".form-header").text("Your message has been sent!");
+		event.preventDefault();
 	});
 });

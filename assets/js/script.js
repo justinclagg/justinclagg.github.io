@@ -17,10 +17,10 @@ $(document).ready(function() {
 				message: message.value
 			},
 			dataType: "json"
-		}).done(function() {
-			$(".form-header").text("Your message has been sent!");
-			name.value = email.value = message.value = "";
 		});
+
+		$(".form-header").text("Your message has been sent!");
+		name.value = email.value = message.value = "";
 
 		return false;  // Prevents page reload
 	});

@@ -141,18 +141,40 @@ a, a:hover {
 	color: #FFF;
 }
 
-.square {
-	display: block;
-	margin: 0 auto;
-	max-width: 500px;
-	box-shadow: 1px 1px 3px #555;
+.red {
+	background-color: #FA6D68;
+	color: #FFF;
 }
 
-.square:hover > img {
-	will-change: transform;
-	transition: transform 300ms ease-in-out;
-	transform: scale(1.01);
+.project {
+	margin-bottom: 50px;
 }
+
+.thumbnail {
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+	max-width: 500px;
+	box-shadow: 1px 1px 3px #555;
+	transition: all 300ms ease-in-out;	/* transition on all is needed for transform */
+}
+
+.thumbnail:hover {
+	transform: scale(1.01);
+	box-shadow: 2px 2px 5px #555;
+}
+
+.project-title {
+	font-size: 35px;
+	font-weight: 300;
+}
+
+.project-description {
+	font-size: 16px;
+	font-weight: 300;
+}
+
 
 .header-title {
 	font-size: 100px;

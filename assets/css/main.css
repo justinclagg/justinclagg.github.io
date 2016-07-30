@@ -12,7 +12,8 @@ h1 {
 }
 
 p {
-	font-size: 18px;
+	font-size: 20px;
+	letter-spacing: 0.5px;
 }
 
 a, a:hover {
@@ -30,17 +31,20 @@ a, a:hover {
 	text-align: center;
 }
 
-#portfolio-page {
-	background-color: #66A7D5;
+#portfolio-info {
+	padding-top: 100px;
+	padding-bottom: 100px;
 }
 
 #about-page {
-	background-color: #008080;
 	padding: 0px 20px 0px 20px;
 }
 
+#about-page p {
+	font-size: 18px;
+}
+
 #contact-page {
-	background-color: #4565B0;
 	padding: 0px 20px 0px 20px;
 }
 
@@ -119,7 +123,7 @@ a, a:hover {
 	display: table;
 	text-align: center;
 	width: 100%;
-	height: 500px;
+	height: 450px;
 	margin-top: -100px;
 	background-color: transparent;
 }
@@ -131,13 +135,40 @@ a, a:hover {
 
 .section-title {
 	font-size: 50px;
-	font-weight: 300;
+	font-weight: 100;
 	padding-bottom: 50px;
 }
 
 .white {
-	background-color: #FFF;
+	background-color: #FFFFFA;
 	color: #333;
+}
+
+.white a {
+	color: #333;
+}
+
+.white .text-link {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-blue {
+	background-color: #66A7D5;
+	color: #FFF;
+}
+
+.grey-blue {
+	background-color: #336699;
+}
+
+.dark-blue {
+	background-color: #4565B0;
+	color: #FFF;
+}
+
+.lime-green {
+	background-color: #20A39E;
+	color: #FFF;
 }
 
 .teal {
@@ -146,17 +177,21 @@ a, a:hover {
 }
 
 .purple {
-	background-color: #4565B0;
-	color: #FFF;
+	background-color: #5B5F97;
 }
 
-.red {
+.lavendar {
+	background-color: #AD7A99;
+}
+
+.salmon {
 	background-color: #FA6D68;
 	color: #FFF;
 }
 
+
 .project {
-	margin-bottom: 50px;
+	margin: 0px 60px 50px 60px;
 }
 
 .thumbnail {
@@ -180,8 +215,7 @@ a, a:hover {
 }
 
 .project-description {
-	font-size: 16px;
-	font-weight: 300;
+	font-weight: 100;
 }
 
 
@@ -240,9 +274,6 @@ footer {
 	padding-right: 20px;
 	text-align: right;
 	color: #BBB;
-	background-color: #000;
-}
-
-footer > p {
+	background-color: #1F363D;
 	font-size: 12px;
 }

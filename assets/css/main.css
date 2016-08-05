@@ -3,7 +3,7 @@ body {
 	height: 100%;
 	font-family: "Alegreya Sans", sans-serif;
 	color: #FFF;
-	margin-bottom: 50px;
+	padding-bottom: 50px;
 }
 
 h1 {
@@ -37,7 +37,7 @@ a, a:hover {
 }
 
 #about-page {
-	padding: 0px 20px 0px 20px;
+	padding: 0px 20px;
 }
 
 #about-page p {
@@ -45,7 +45,7 @@ a, a:hover {
 }
 
 #contact-page {
-	padding: 0px 20px 0px 20px;
+	padding: 0px 20px;
 }
 
 #nav {
@@ -100,7 +100,7 @@ a, a:hover {
 	background-color: #FFF;
 }
 
-/* mobile navigation */
+/* mobile navigation and other styling */
 @media only screen and (max-width: 768px) {
 	#nav-links a::after {
 		display: none;
@@ -112,24 +112,29 @@ a, a:hover {
 		color: #FFF;
 		font-weight: bold;
 	}
+	body .portfolio-banner {
+		padding-top: 40px;
+	}
+	body .portfolio-banner h1 {
+		font-size: 50px;
+	}
+	body .page-title {
+		font-size: 60px;
+	}
+	body .right-col {
+		padding-top: 40px;
+	}
 }
 
-.vcenter {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-.lg-banner {
-	display: table;
+.portfolio-banner {
 	text-align: center;
 	width: 100%;
-	height: 450px;
-	margin-top: -100px;
+	padding: 90px 10px 150px 10px;
 	background-color: transparent;
 }
 
 .section {
-	padding: 50px 3px 50px 3px;
+	padding: 50px 25px;
 	text-align: center;
 }
 
@@ -191,7 +196,7 @@ a, a:hover {
 
 
 .project {
-	margin: 0px 60px 50px 60px;
+	margin-bottom: 50px;
 }
 
 .thumbnail {
@@ -215,7 +220,7 @@ a, a:hover {
 }
 
 .project-description {
-	font-weight: 100;
+	font-weight: 300;
 }
 
 
@@ -239,7 +244,7 @@ a, a:hover {
 
 .right-col {
 	padding-top: 70px;
-	padding-bottom: 30px;
+	padding-bottom: 100px;
 }
 
 #contact-info .fa {

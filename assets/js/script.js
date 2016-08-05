@@ -2,6 +2,10 @@
 $(document).ready(function() {
 	"use strict";
 
+	// Keep footer from jumping when mobile address bar disappears
+	var height = window.innerHeight;
+	$(document.body).css("height", height);
+
 	$("#contact-form").submit(function(event) {
 
 		var name = document.getElementById("name-form"),

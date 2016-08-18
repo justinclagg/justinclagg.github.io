@@ -1,0 +1,291 @@
+
+/* Text */
+$font-stack: "Alegreya Sans", sans-serif;
+$white-txt: #FFF;
+$grey-txt: #333;
+
+/* Background Colors */
+$shadow: #555;
+$white-bg: #FFF;
+$light-blue-bg: #66A7D5;
+$dark-blue-bg: #4565B0;
+$lime-green-bg: #20A39E;
+$teal-bg: #008080;
+// Other potential colors: #FA6D68 #AD7A99 #5B5F97 #336699
+
+@mixin mobile {
+	@media only screen and (max-width: 768px) {
+		@content;
+	}
+}
+
+$footer-height: 50px;
+
+body {
+	font-family: $font-stack;
+	color: $white-txt;
+}
+
+h1 {
+	font-size: 60px;
+	font-weight: 400;
+}
+
+p {
+	font-size: 18px;
+	letter-spacing: 0.5px;
+}
+
+a {
+	color: $white-txt;
+	text-decoration: none;
+	&:hover {
+		@extend a;
+	}
+}
+
+.text-link {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);	
+}
+
+.btn {
+	width: 90px;
+	background-color: transparent;
+	color: $white-bg;
+}
+
+footer {
+	position: fixed;
+	height: $footer-height;
+	line-height: $footer-height;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	padding-right: 20px;
+	text-align: right;
+	color: #BBB;
+	background-color: #1F363D;
+	font-size: 12px;
+}
+
+/* Portfolio Page */
+
+.no-side-pad {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.p-large p {
+	font-size: 20px;
+}
+
+.portfolio-banner {
+	text-align: center;
+	width: 100%;
+	padding: 90px 10px 150px 10px;
+	background-color: transparent;
+
+	@include mobile {
+		padding-top: 40px;
+	}
+
+	h1 {
+		@include mobile {
+			font-size: 50px;
+		}
+	}
+}
+
+.section {
+	padding: 50px 25px;
+	text-align: center;
+}
+
+.white-bg {
+	background-color: $white-bg;
+	color: $grey-txt;
+	
+	a { color: $grey-txt; }
+
+	.text-link { border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+}
+
+.light-blue-bg {
+	background-color: $light-blue-bg;
+}
+
+.dark-blue-bg {
+	background-color: $dark-blue-bg;
+}
+
+.lime-green-bg {
+	background-color: $lime-green-bg;
+}
+
+.teal-bg {
+	background-color: $teal-bg;
+}
+
+.section-title {
+	font-size: 50px;
+	font-weight: 100;
+	padding-bottom: 50px;
+}
+
+.project {
+	margin-bottom: 50px;
+}
+
+.thumbnail {
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+	max-width: 500px;
+	box-shadow: 1px 1px 3px $shadow;
+	transition: all 300ms ease-in-out;	/* transition on all is needed for transform */
+
+	&:hover {
+		transform: scale(1.01);
+		box-shadow: 2px 2px 5px $shadow;
+	}
+}
+
+.project-title {
+	font-size: 35px;
+	font-weight: 300;
+}
+
+.project-description {
+	font-weight: 300;
+}
+
+/* About Page */
+
+.logo {
+	display: inline-block;
+	margin: 0px 15px;
+	text-align: center;
+}
+
+.fa-pad {
+	color: $white-txt;
+	padding: 0 7px;
+}
+
+.contact-form {
+	input {
+		background-color: transparent;
+		color: $white-txt;
+	}
+	textarea {
+		@extend input;
+		resize: none;
+	}
+}
+
+/* About and Contact Page (shared) */
+
+.page-title {
+	display: inline-block; /* used to make the underline the width of the text */
+	font-size: 100px;
+	font-weight: 100;
+
+	@include mobile {
+		font-size: 60px;
+	}
+
+	&::after {
+		content: " ";
+		display: block;
+		height: 1px;
+		background-color: $white-bg;
+		margin-bottom: 30px;
+	}
+}
+
+.row {
+	padding: 0 15px;
+}
+
+.left-col {
+	padding-top: 0;
+}
+
+.right-col {
+	padding-top: 70px;
+	padding-bottom: 100px;
+
+	@include mobile {
+		padding-top: 40px;
+	}
+}
+
+/* Navigation */
+
+.navbar-custom {
+	margin-top: 20px;
+	background-color: transparent;
+
+	.navbar-toggle {
+		border: none;
+
+		.icon-bar {
+			background-color: $white-bg;
+		}
+	}
+}
+
+@mixin nav-underline($height, $bg) {
+	content: "";
+	position: absolute;
+	width: 80%;
+	height: $height;
+	bottom: 0;
+	left: 10%;
+	background-color: $bg;
+}
+
+.nav-links ul {
+
+	.active-nav a {
+
+		@include mobile {
+			color: $white-txt;
+			font-weight: bold;
+		}
+
+		&::after {
+			@include nav-underline(2px, $white-bg);
+			transform: scaleX(1);
+		}
+	}
+
+	li a {
+		color: $white-txt;
+		font-size: 20px;
+
+		@include mobile {
+			color: #F6F6F6;
+		}
+
+		&::after {
+			@include nav-underline(1px, $grey-txt);
+			transform: scaleX(0);
+			will-change: transform;
+			transition: transform 300ms ease-in-out 0s;
+
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&:hover {
+			background-color: transparent;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+}

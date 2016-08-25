@@ -142,6 +142,7 @@ footer {
     margin-bottom: 30px; }
 
 .row {
+  margin: 0;
   padding: 0 15px; }
 
 .left-col {

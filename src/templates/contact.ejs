@@ -1,0 +1,68 @@
+<%- include('src/templates/partials/header') %>
+<body class="dark-blue-bg">
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-custom" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Menu button for small screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-links">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- Navigation menu -->
+			<div class="nav-links collapse navbar-collapse navbar-right" id="nav-links">
+				<ul class="nav navbar-nav">
+					<li><a href="./about">About</a></li>
+					<li><a href="http://www.justinclagg.com">Portfolio</a></li>
+					<li class="active-nav"><a href="./contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!--./Navigation Bar-->
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-1 col-sm-6 left-col">
+			<h1 class="page-title">Contact me</h1>
+			<h2>Email</h2>
+			<h3>justinclagg@gmail.com</h3>
+			<h2>Connect</h2>
+			<h3>
+				<a href="https://github.com/justinclagg" target="_blank">
+					<i class="fa fa-github fa-lg fa-pad" title="Github" aria-hidden="true"></i>
+					<span class="sr-only">Github</span>
+				</a>
+				<a href="https://www.linkedin.com/in/justinclagg" target="_blank">
+					<i class="fa fa-linkedin fa-lg fa-pad" title="LinkedIn" aria-hidden="true"></i>
+					<span class="sr-only">LinkedIn</span>
+				</a>
+				<a href="https://twitter.com/JustinMClagg" target="_blank">
+					<i class="fa fa-twitter fa-lg fa-pad" title="Twitter" aria-hidden="true"></i>
+					<span class="sr-only">Twitter</span>
+				</a>
+			</h3>
+		</div>
+		<!-- Contact form -->
+		<div class="col-lg-4 col-lg-offset-1 col-sm-5 col-sm-offset-1 right-col">
+			<h2 class="form-header">Send a message</h2>
+			<h4 class="form-message"></h4>
+			<form id="contact-form" class="contact-form">
+				<div class="form-group">
+					<label for="name-form">Name</label>
+					<input type="text" class="form-control" id="name-form" name="name" placeholder="Name" required>
+				</div>
+				<div class="form-group">
+					<label for="email-form">Email address</label>
+					<input type="email" class="form-control" id="email-form" name="_replyto" placeholder="Email" required>
+				</div>
+				<div class="form-group">
+					<label for="message-form">Message</label>
+					<textarea class="form-control" id="message-form" name="message" rows="5" placeholder="Your message" required></textarea>
+				</div>
+				<button type="submit" class="btn btn-default">Send</button>
+			</form>
+		</div>
+	</div>
+<%- include('src/templates/partials/footer') %>

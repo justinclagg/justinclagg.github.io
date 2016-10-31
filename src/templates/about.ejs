@@ -1,0 +1,86 @@
+<%- include('src/templates/partials/header') %>
+<body class="teal-bg">
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-custom" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Menu button for small screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-links">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- Navigation menu -->
+			<div class="nav-links collapse navbar-collapse navbar-right" id="nav-links">
+				<ul class="nav navbar-nav">
+					<li class="active-nav"><a href="./about">About</a></li>
+					<li><a href="http://www.justinclagg.com">Portfolio</a></li>
+					<li><a href="./contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!--./Navigation Bar-->
+	<div class="row">
+		<!-- Left column -->
+		<div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-7 left-col">
+			<h1 class="page-title">About me</h1>
+			<p style="font-size: 21px;">I'm Justin Clagg, a graduate of the University of Pittsburgh who studied physics and computer science.</p>
+			<p>Physics quickly introduced me to programming, used as a means to efficiently
+				solve problems without analytic solutions. After spending a summer writing C++ code
+				at <a class="text-link" href="http://nist.gov" target="_blank">NIST</a>, I started looking into programming as a career.
+			</p>
+			<p>I love taking on complex problems, developing efficient solutions, and creating new things. Programming has
+				been a perfect fit, and I'm working to learn as much as possible.
+			</p>
+			<p>I'm currently learning front and back end development, with a focus on JavaScript.
+				I've completed the front-end section of <a class="text-link" href="https://www.freecodecamp.com" target="_blank">Free Code Camp</a>,
+				and am now working with Node.js and Angular.
+			</p>
+		</div>
+		<!-- Right column -->
+		<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-5 right-col">
+			<h2>Front-end Development</h2>
+			<figure class="logo">
+				<i class="fa fa-html5 fa-4x" aria-hidden="true"></i>
+				<figcaption>HTML5</figcaption>
+			</figure>
+			<figure class="logo">
+				<i class="fa fa-css3 fa-4x" aria-hidden="true"></i>
+				<figcaption>CSS3</figcaption>
+			</figure>
+			<figure class="logo">
+				<img src="./src/img/sass_logo.png" alt="Sass Logo" width="50px">
+				<figcaption>Sass</figcaption>
+			</figure>
+			<figure class="logo">
+				<img src="./src/img/javascript_logo.png" alt="Javascript Logo" width="50px">
+				<figcaption>Javascript</figcaption>
+			</figure>
+			<figure class="logo">
+				<img src="./src/img/jquery_logo.png" alt="jQuery Logo" width="50px">
+				<figcaption>jQuery</figcaption>
+			</figure>
+			<figure class="logo">
+				<img src="./src/img/bootstrap_logo.png" alt="Bootstrap Logo" width="50px">
+				<figcaption>Bootstrap</figcaption>
+			</figure>
+			<!-- Bootstrap icon -->
+			<h2>Back-end Development</h2>
+			<figure class="logo">
+				<img src="./src/img/nodejs_logo.png" alt="Node.js Logo" width="50px">
+				<figcaption>Node.js</figcaption>
+			</figure>
+			<h2>Tools</h2>
+			<figure class="logo">
+				<i class="fa fa-code-fork fa-4x" aria-hidden="true"></i>
+				<figcaption>Git</figcaption>
+			</figure>
+			<!-- Photoshop -->
+			<div></div>
+			<!--<a href="#" class="btn btn-default btn-lg resume-btn" role="button">Resume</a>-->
+		</div>
+	</div>
+<%- include('src/templates/partials/footer') %>

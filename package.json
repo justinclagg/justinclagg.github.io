@@ -1,0 +1,27 @@
+{
+  "name": "justinclagg.github.io",
+  "version": "1.0.0",
+  "description": "Personal website of Justin Clagg",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack -p --config ./webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinclagg/justinclagg.github.io.git"
+  },
+  "author": "Justin Clagg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinclagg/justinclagg.github.io/issues"
+  },
+  "homepage": "https://github.com/justinclagg/justinclagg.github.io#readme",
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "ejs-webpack-builder": "^2.0.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3"
+  }
+}

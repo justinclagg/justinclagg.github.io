@@ -3,7 +3,6 @@ $(document).ready(function() {
 	'use strict';
 
 	$('#contact-form').submit(function(event) {
-
 		var name = document.getElementById('name-form'),
 			email = document.getElementById('email-form'),
 			message = document.getElementById('message-form');

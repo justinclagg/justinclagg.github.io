@@ -3,9 +3,10 @@ const path = require('path');
 const ejsBuilder = require('ejs-webpack-builder');
 
 const SRC_DIR = path.resolve(__dirname, './src');
-const DIST_DIR = path.resolve(__dirname);
+const DIST_DIR = path.resolve(__dirname, './docs');
 
 module.exports = {
+	entry: path.resolve(__dirname, 'index.js'),
 	output: {
 		path: DIST_DIR,
 		filename: 'app.js',
@@ -13,35 +14,31 @@ module.exports = {
 	},
 	plugins: [
 		new ejsBuilder({
-			root: __dirname,
+			root: path.resolve(__dirname, './src/templates/'),
 			files: [
 				{
 					source: {
 						name: 'index.ejs',
-						dir: './src/templates/',
 					},
-					parameters: {filename: 'index.ejs', title: 'Portfolio', js: null}
+					parameters: { filename: 'index.ejs', title: 'Portfolio'}
 				},
 				{
 					source: {
 						name: 'about.ejs',
-						dir: './src/templates/',
 					},
-					parameters: {filename: 'about.ejs', title: 'About', js: null}					
+					parameters: { filename: 'about.ejs', title: 'About'}
 				},
 				{
 					source: {
 						name: 'contact.ejs',
-						dir: './src/templates/',
 					},
-					parameters: {filename: 'contact.ejs', title: 'Contact', js: './src/js/script.js'}
+					parameters: { filename: 'contact.ejs', title: 'Contact'}
 				},
 				{
 					source: {
 						name: 'construction.ejs',
-						dir: './src/templates/',
 					},
-					parameters: {filename: 'construction.ejs', title: 'Under Construction', js: null}
+					parameters: { filename: 'construction.ejs', title: 'Under Construction'}
 				}
 			]
 		})
@@ -52,6 +49,10 @@ module.exports = {
 				test: /\.scss$/,
 				include: path.resolve(SRC_DIR, 'css'),
 				loaders: ['style', 'css', 'sass']
+			},
+			{
+				test: /\.js$/,
+				include: path.resolve(SRC_DIR, 'js')
 			}
 		]
 	}

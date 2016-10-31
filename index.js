@@ -1,2 +1,2 @@
-// Webpack entry point
+// Webpack entry
 require('./src/css/main.scss');

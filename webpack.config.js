@@ -7,7 +7,7 @@ const SRC_DIR = path.resolve(__dirname, './src');
 const DIST_DIR = path.resolve(__dirname, './docs');
 
 module.exports = {
-	entry: path.resolve(__dirname, 'index.js'),
+	entry: path.resolve(__dirname, './app.js'),
 	output: {
 		path: DIST_DIR,
 		filename: 'app.js',
@@ -22,25 +22,25 @@ module.exports = {
 					source: {
 						name: 'index.ejs',
 					},
-					parameters: { filename: 'index.ejs', title: 'Portfolio' }
+					parameters: { filename: 'index.ejs', title: 'Portfolio', js: null }
 				},
 				{
 					source: {
 						name: 'about.ejs',
 					},
-					parameters: { filename: 'about.ejs', title: 'About' }
+					parameters: { filename: 'about.ejs', title: 'About', js: null }
 				},
 				{
 					source: {
 						name: 'contact.ejs',
 					},
-					parameters: { filename: 'contact.ejs', title: 'Contact' }
+					parameters: { filename: 'contact.ejs', title: 'Contact', js: './app.js' }
 				},
 				{
 					source: {
 						name: 'construction.ejs',
 					},
-					parameters: { filename: 'construction.ejs', title: 'Under Construction' }
+					parameters: { filename: 'construction.ejs', title: 'Under Construction', js: null }
 				}
 			]
 		})
@@ -54,10 +54,6 @@ module.exports = {
 					'style',
 					'css!sass'
 				) 
-			},
-			{
-				test: /\.js$/,
-				include: path.resolve(SRC_DIR, 'js')
 			}
 		]
 	}

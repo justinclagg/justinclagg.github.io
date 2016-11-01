@@ -1,6 +1,6 @@
 // Webpack entry
 
-require('./src/css/main.scss');
+require('../css/main.scss');
 
 $(document).ready(function () {
 	'use strict';

@@ -4,17 +4,16 @@ const ejsBuilder = require('ejs-webpack-builder');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const SRC_DIR = path.resolve(__dirname, './src');
-const DIST_DIR = path.resolve(__dirname, './docs');
 
 module.exports = {
-	entry: path.resolve(__dirname, './app.js'),
+	entry: path.resolve(__dirname, './src/js/index.js'),
 	output: {
-		path: DIST_DIR,
-		filename: 'app.js',
+		path: path.resolve(__dirname),
+		filename: './js/app.js',
 		publicPath: '/'
 	},
 	plugins: [
-		new ExtractTextPlugin('[name].css'),
+		new ExtractTextPlugin('./css/[name].css'),
 		new ejsBuilder({
 			root: path.resolve(__dirname, './src/templates/'),
 			files: [
@@ -34,7 +33,7 @@ module.exports = {
 					source: {
 						name: 'contact.ejs',
 					},
-					parameters: { filename: 'contact.ejs', title: 'Contact', js: './app.js' }
+					parameters: { filename: 'contact.ejs', title: 'Contact', js: './js/app.js' }
 				},
 				{
 					source: {

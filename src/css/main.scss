@@ -11,7 +11,7 @@ $light-blue-bg: #66A7D5;
 $dark-blue-bg: #4565B0;
 $lime-green-bg: #20A39E;
 $teal-bg: #008080;
-// Other potential colors: #FA6D68 #AD7A99 #5B5F97 #336699
+// Other potential colors: #FA6D68 #AD7A99 #5B5F97 #336699 #57B8FF
 
 @mixin mobile {
 	@media only screen and (max-width: 768px) {
@@ -101,6 +101,11 @@ footer {
 	text-align: center;
 }
 
+.project-section {
+	padding: 100px 25px 50px 25px;
+	text-align: center;
+}
+
 .white-bg {
 	background-color: $white-bg;
 	color: $grey-txt;
@@ -136,18 +141,53 @@ footer {
 	margin-bottom: 50px;
 }
 
-.thumbnail {
+.project-image {
+	position: relative;
 	display: block;
 	margin: 0 auto;
 	padding: 0;
-	border: none;
 	max-width: 500px;
+	border: none;
 	box-shadow: 1px 1px 3px $shadow;
 	transition: all 300ms ease-in-out;	/* transition on all is needed for transform */
 
 	&:hover {
 		transform: scale(1.01);
 		box-shadow: 2px 2px 5px $shadow;
+	}
+}
+
+.image-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+
+	&:hover {
+		background-color: #000;
+		opacity: 0.9;
+	}
+}
+
+.overlay-links {
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translateX(-50%);
+
+	button {
+		width: 100px;
+		padding: 10px;
+		margin-right: 10px;
+		background-color: transparent;
+		border: 2px solid #FFF;
+		font-size: 18px;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }
 

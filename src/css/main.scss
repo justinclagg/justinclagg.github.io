@@ -235,18 +235,18 @@ footer {
 		opacity: 0;
 		transform: translateX(-10px);
 	}
-	20% {
+	33% {
 		opacity: 0;
 		transform: translateX(-10px);		
 	}
 	100% {
 		opacity: 100;
+		transform: translateX(0);
 	}
 }
 
 .logo-col {
 	animation: fadeIn ease 1.5s;
-	transform: translateX(0);
 }
 
 /* Navigation */

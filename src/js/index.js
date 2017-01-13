@@ -4,7 +4,7 @@ require('../css/main.scss');
 
 $(document).ready(function () {
 	'use strict';
-
+	/* Contact Page */
 	$('#contact-form').submit(function (event) {
 		var name = document.getElementById('name-form'),
 			email = document.getElementById('email-form'),
@@ -31,4 +31,9 @@ $(document).ready(function () {
 		event.preventDefault();  // Prevents page reload
 	});
 
+});
+
+/* About Page */
+$(window).on('load', function () {
+	$('#logo-col').removeClass('hidden');
 });

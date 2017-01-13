@@ -21,13 +21,13 @@ module.exports = {
 					source: {
 						name: 'index.ejs',
 					},
-					parameters: { filename: 'index.ejs', title: 'Portfolio', js: './js/app.js' }
+					parameters: { filename: 'index.ejs', title: 'Portfolio', js: null }
 				},
 				{
 					source: {
 						name: 'about.ejs',
 					},
-					parameters: { filename: 'about.ejs', title: 'About', js: null }
+					parameters: { filename: 'about.ejs', title: 'About', js: './js/app.js' }
 				},
 				{
 					source: {

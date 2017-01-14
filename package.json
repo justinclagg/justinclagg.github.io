@@ -23,6 +23,7 @@
     "node-sass": "^4.2.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "svg-sprite-loader": "^0.1.2",
     "webpack": "^1.13.3"
   }
 }

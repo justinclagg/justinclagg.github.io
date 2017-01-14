@@ -52,8 +52,17 @@ module.exports = {
 				loader: ExtractTextPlugin.extract(
 					'style',
 					'css!sass'
-				) 
-			}
+				)
+			},
+			{
+				test: /\.svg$/,
+				include: path.resolve('img'),
+				loader: 'svg-sprite?' + JSON.stringify({
+					name: '[name]_[hash]',
+					prefixize: true,
+					// spriteModule: 'utils/my-custom-sprite'
+				})
+			}	
 		]
 	}
 };

@@ -47,6 +47,12 @@ module.exports = {
 	module: {
 		loaders: [
 			{
+				test: /\.js$/,
+				include: path.resolve(SRC_DIR),
+				exclude: /node_modules/,
+				loader: 'babel-loader'
+			},
+			{
 				test: /\.scss$/,
 				include: path.resolve(SRC_DIR, 'css'),
 				loader: ExtractTextPlugin.extract(
@@ -58,7 +64,7 @@ module.exports = {
 				test: /\.svg$/,
 				include: path.resolve('img'),
 				loader: 'svg-sprite?' + JSON.stringify({
-					name: '[name]_[hash]',
+					name: '[name]',
 					prefixize: true,
 					// spriteModule: 'utils/my-custom-sprite'
 				})

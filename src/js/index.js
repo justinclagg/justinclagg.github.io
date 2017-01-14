@@ -1,6 +1,7 @@
 // Webpack entry
 
 require('../css/main.scss');
+const images = require('../img');
 
 $(document).ready(function () {
 	'use strict';
@@ -34,6 +35,6 @@ $(document).ready(function () {
 });
 
 /* About Page */
-$(window).on('load', function () {
-	$('#logo-col').removeClass('hidden');
-});
+// $(window).on('load', function () {
+// 	$('#logo-col').removeClass('hidden');
+// });

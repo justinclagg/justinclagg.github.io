@@ -33,8 +33,3 @@ $(document).ready(function () {
 	});
 
 });
-
-/* About Page */
-// $(window).on('load', function () {
-// 	$('#logo-col').removeClass('hidden');
-// });

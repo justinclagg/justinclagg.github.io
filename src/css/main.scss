@@ -314,7 +314,7 @@ footer {
 
 /* Navigation */
 
-.navbar-custom {
+.navbar-dark {
 	margin-top: 20px;
 	background-color: transparent;
 
@@ -331,6 +331,16 @@ footer {
 	}
 }
 
+.navbar-light {
+	@extend .navbar-dark;
+
+	.navbar-toggle {
+		.icon-bar {
+			background-color: $white-txt;
+		}
+	}
+}
+
 @mixin nav-underline($height, $bg) {
 	content: "";
 	position: absolute;
@@ -341,7 +351,7 @@ footer {
 	background-color: $bg;
 }
 
-.nav-links ul {
+.nav-links-dark ul {
 
 	.active-nav a {
 
@@ -366,6 +376,50 @@ footer {
 
 		&::after {
 			@include nav-underline(1px, $grey-txt);
+			transform: scaleX(0);
+			will-change: transform;
+			transition: transform 300ms ease-in-out 0s;
+
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&:hover {
+			background-color: transparent;
+
+			&::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+}
+
+.nav-links-light ul {
+
+	.active-nav a {
+
+		@include mobile {
+			color: $white-txt;
+			font-weight: bold;
+		}
+
+		&::after {
+			@include nav-underline(2px, $white-txt);
+			transform: scaleX(1);
+		}
+	}
+
+	li a {
+		color: $white-txt;
+		font-size: 20px;
+
+		@include mobile {
+			color: $white-txt;
+		}
+
+		&::after {
+			@include nav-underline(1px, $white-txt);
 			transform: scaleX(0);
 			will-change: transform;
 			transition: transform 300ms ease-in-out 0s;

@@ -126,18 +126,22 @@ footer {
 
 .light-blue-bg {
 	background-color: $light-blue-bg;
+	color: $white-txt;
 }
 
 .dark-blue-bg {
 	background-color: $dark-blue-bg;
+	color: $white-txt;
 }
 
 .lime-green-bg {
 	background-color: $lime-green-bg;
+	color: $white-txt;
 }
 
 .teal-bg {
 	background-color: $teal-bg;
+	color: $white-txt;
 }
 
 .section-title {
@@ -202,6 +206,7 @@ footer {
 		background-color: transparent;
 		border: 2px solid #FFF;
 		font-size: 18px;
+		color: $white-txt;
 
 		&:hover {
 			cursor: pointer;
@@ -317,8 +322,12 @@ footer {
 		border: none;
 
 		.icon-bar {
-			background-color: $white-bg;
+			background-color: $grey-txt;
 		}
+	}
+
+	.navbar-brand {
+		font-size: 20px;
 	}
 }
 
@@ -337,22 +346,22 @@ footer {
 	.active-nav a {
 
 		@include mobile {
-			color: $white-txt;
+			color: $grey-txt;
 			font-weight: bold;
 		}
 
 		&::after {
-			@include nav-underline(2px, $white-bg);
+			@include nav-underline(2px, #000);
 			transform: scaleX(1);
 		}
 	}
 
 	li a {
-		color: $white-txt;
+		color: $grey-txt;
 		font-size: 20px;
 
 		@include mobile {
-			color: #F6F6F6;
+			color: $grey-txt;
 		}
 
 		&::after {

@@ -17,17 +17,23 @@ module.exports = {
 		new ejsBuilder({
 			root: path.resolve(__dirname, './src/templates/'),
 			files: [
+				// {
+				// 	source: {
+				// 		name: 'index.ejs',
+				// 	},
+				// 	parameters: { filename: 'index.ejs', title: 'Portfolio', js: null }
+				// },
+				// {
+				// 	source: {
+				// 		name: 'about.ejs',
+				// 	},
+				// 	parameters: { filename: 'about.ejs', title: 'About', js: './js/app.js' }
+				// },
 				{
 					source: {
 						name: 'index.ejs',
 					},
-					parameters: { filename: 'index.ejs', title: 'Portfolio', js: null }
-				},
-				{
-					source: {
-						name: 'about.ejs',
-					},
-					parameters: { filename: 'about.ejs', title: 'About', js: './js/app.js' }
+					parameters: { filename: 'index.ejs', title: 'About', js: './js/app.js' }
 				},
 				{
 					source: {

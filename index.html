@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 	<title>Justin Clagg | Portfolio</title>
+ 	<title>Justin Clagg | About</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Portfolio page of Justin Clagg.">
 	<meta name="author" content="Justin Clagg">
@@ -15,10 +15,10 @@
 	<link rel="icon" type="image/png" href="./img/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="./img/favicon-16x16.png" sizes="16x16">
 </head>
-<body class="white-bg no-side-pad p-large">
+<body class="teal-bg">
 	<div class="wrap">
 	<!-- Navigation Bar -->
-	<nav class="navbar navbar-dark" role="navigation">
+	<nav class="navbar navbar-light" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Menu button for small screens -->
@@ -28,12 +28,12 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="https://www.justinclagg.com">Justin Clagg</a>
 			</div>
 			<!-- Navigation menu -->
-			<div class="nav-links-dark collapse navbar-collapse navbar-right" id="nav-links">
+			<div class="nav-links-light collapse navbar-collapse navbar-right" id="nav-links">
 				<ul class="nav navbar-nav">
-					<li><a href="./about">About</a></li>
+					<!-- <li class="active-nav"><a href="./about">About</a></li>
+					<li><a href="https://www.justinclagg.com">Portfolio</a></li> -->
 					<li class="active-nav"><a href="https://www.justinclagg.com">Portfolio</a></li>
 					<li><a href="./contact">Contact</a></li>
 				</ul>
@@ -42,122 +42,126 @@
 	</nav>
 	<!--./Navigation Bar-->
 	<div class="main">
-	<section class="section white-bg">
-		<img src="./img/computer.png">
-		<h2>What I've been up to.</h2>
-		<p>Below is some of my recent work.<br> For more you can visit my
-			<a class="text-link" href="https://github.com/justinclagg" target="_blank">GitHub</a>.
-	</section>
-	<section class="project-section lime-green-bg">
-		<div class="project">
-			<div class="project-image">
-				<div class="image-overlay">
-					<div class="overlay-links">
-						<a href="http://community-twitch-development.justinclagg.com/">
-							<button>Demo</button>
-						</a>
-						<a href="https://github.com/justinclagg/community-twitch-development" target="_blank">
-							<button>Source</button>
-						</a>
-					</div>
-				</div>
-				<img src="./img/community_dev_thumbnail.png" class="img-responsive">
-			</div>
-			<h3 class="project-title">Community Twitch Development</h3>
-			<p class="project-description">
-				A web app that helps Twitch streamers collaborate with viewers on a development project.<br/>
-				Built with React, Redux, Node, MongoDB, Socket.io, and Passport.js.
-			</p>
+	<div class="row">
+		<!-- Left column -->
+		<div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-7 left-col">
+			<h1 class="page-title">About me</h1>
+			<p>I'm Justin Clagg, a developer currently working at <a class="text-link" href="https://gdit.com">GDIT</a>.</p>
+			<p>I spend my time on full stack web development, test automation frameworks, continuous integration, and helping teams modernize their development practices.</p>
+			<p>I love taking on complex problems, creating new things, and helping others reach their goals.</p>
 		</div>
-		<div class="project">
-			<div class="project-image">
-				<div class="image-overlay">
-					<div class="overlay-links">
-						<a href="https://url-shortener-jc.herokuapp.com/">
-							<button>Demo</button>
-						</a>
-						<a href="https://github.com/justinclagg/url-shortener" target="_blank">
-							<button>Source</button>
-						</a>
-					</div>
-				</div>
-				<img src="./img/url_shortener_thumbnail.png" class="img-responsive">
-			</div>
-			<h3 class="project-title">URL Shortener</h3>
-			<p class="project-description">
-				Uses Node to store user inputed links in MongoDB, returning a shortened alternative.<br/>
-				Front end is written in vanilla Javascript and uses HTML5 form validation.
-			</p>
+		<!-- Right column -->
+		<div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-5 right-col logo-col" id="logo-col">
+			<h2>Frontend Development</h2>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#html_logo"></use>
+				</svg>
+				<figcaption>HTML5</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#sass_logo"></use>
+				</svg>
+				<figcaption>Sass</figcaption>
+			</figure>
+			<figure class="logo-sm">
+				<svg width="45px" height="45px">
+					<use xlink:href="#javascript_logo"></use>
+				</svg>
+				<figcaption>Javascript</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#jquery_logo"></use>
+				</svg>
+				<figcaption>jQuery</figcaption>
+			</figure>
+			<figure class="logo-sm">
+				<svg width="45px" height="45px">
+					<use xlink:href="#bootstrap_logo"></use>
+				</svg>
+				<figcaption>Bootstrap</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#react_logo"></use>
+				</svg>
+				<figcaption>React</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#redux_logo"></use>
+				</svg>
+				<figcaption>Redux</figcaption>
+			</figure>
+			<h2>Backend Development</h2>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#java_logo"></use>
+				</svg>
+				<figcaption>Java</figcaption>
+			</figure>
+			<figure class="logo-sm">
+				<svg width="45px" height="45px">
+					<use xlink:href="#node_logo"></use>
+				</svg>
+				<figcaption>Node</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#mongodb_logo"></use>
+				</svg>
+				<figcaption>MongoDB</figcaption>
+			</figure>
+			<figure class="logo-sm">
+				<svg width="45px" height="45px">
+					<use xlink:href="#socketio_logo"></use>
+				</svg>
+				<figcaption>Socket.io</figcaption>
+			</figure>
+			<h2>Tools</h2>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#git_logo"></use>
+				</svg>
+				<figcaption>Git</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#npm_logo"></use>
+				</svg>
+				<figcaption>npm</figcaption>
+			</figure>
+			<figure class="logo-sm">
+				<svg width="45px" height="45px">
+					<use xlink:href="#webpack_logo"></use>
+				</svg>
+				<figcaption>Webpack</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="50px" height="50px">
+					<use xlink:href="#mocha_logo"></use>
+				</svg>
+				<figcaption>Mocha</figcaption>
+			</figure>
+			<figure class="logo">
+				<svg width="45px" height="45px">
+					<use xlink:href="#cucumber_logo"></use>
+				</svg>
+				<figcaption>Cucumber</figcaption>
+			</figure>
+			<div></div>
 		</div>
-	</section>
-	<section class="project-section dark-blue-bg">
-		<div class="project">
-			<div class="project-image">
-				<div class="image-overlay">
-					<div class="overlay-links">
-						<a href="https://www.justinclagg.com/local-weather">
-							<button>Demo</button>
-						</a>
-						<a href="https://github.com/justinclagg/local-weather" target="_blank">
-							<button>Source</button>
-						</a>
-					</div>
-				</div>
-				<img src="./img/weather_thumbnail.png" class="img-responsive">
-			</div>
-			<h3 class="project-title">Local Weather</h3>
-			<p class="project-description">
-				A jQuery application that uses geolocation with an IP fallback, <br/>
-				and the darksky.net API to display your local weather.
-			</p>
-		</div>
-		<div class="project">
-			<div class="project-image">
-				<div class="image-overlay">
-					<div class="overlay-links">
-						<a href="https://www.justinclagg.com/twitch-programmers">
-							<button>Demo</button>
-						</a>
-						<a href="https://github.com/justinclagg/twitch-programmers" target="_blank">
-							<button>Source</button>
-						</a>
-					</div>
-				</div>
-				<img src="./img/twitch_thumbnail.png" class="img-responsive">
-			</div>
-			<h3 class="project-title">Twitch.tv Programmers Tracker</h3>
-			<p class="project-description">
-				A jQuery application that filters and displays programmers streaming at Twitch.tv/creative.<br/>
-				Uses Handlebars.js for templating each streamer's information.
-			</p>
-		</div>
-		<div class="project">
-			<div class="project-image">
-				<div class="image-overlay">
-					<div class="overlay-links">
-						<a href="https://www.justinclagg.com/tic-tac-toe/">
-							<button>Demo</button>
-						</a>
-						<a href="https://github.com/justinclagg/tic-tac-toe" target="_blank">
-							<button>Source</button>
-						</a>
-					</div>
-				</div>
-				<img src="./img/tictactoe_thumbnail.png" class="img-responsive">
-			</div>
-			<h3 class="project-title">Tic Tac Toe</h3>
-			<p class="project-description">Tic Tac Toe with multiple difficulty levels using the minimax algorithm.<br/>
-				Written in Javascript with jQuery for UI.</p>
-		</div>
-	</section>
+	</div>
 	</div>
 	</div>
 	<footer>
-	  Copyright © 2017 Justin Clagg
+	  Copyright © 2018 Justin Clagg
 	</footer>
 	<!-- Javascript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
+	<script src="./js/app.js"></script>
 </body>
 </html>

@@ -17,16 +17,17 @@
   },
   "homepage": "https://github.com/justinclagg/justinclagg.github.io#readme",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.18.0",
-    "css-loader": "^0.26.1",
-    "ejs-webpack-builder": "^2.0.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "node-sass": "^4.2.0",
-    "sass-loader": "^4.0.2",
-    "style-loader": "^0.13.1",
-    "svg-sprite-loader": "^0.1.2",
-    "webpack": "^1.13.3"
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "ejs-webpack-builder": "^2.0.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "svg-sprite-loader": "^4.1.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
   }
 }

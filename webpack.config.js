@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const ejsBuilder = require('ejs-webpack-builder');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const SRC_DIR = path.resolve(__dirname, './src');
 
@@ -13,7 +13,11 @@ module.exports = {
 		publicPath: '/'
 	},
 	plugins: [
-		new ExtractTextPlugin('./css/[name].css'),
+		new MiniCssExtractPlugin({
+			filename: './css/[name].css',
+			chunkFilename: '[id].css',
+			ignoreOrder: false
+		}),
 		new ejsBuilder({
 			root: path.resolve(__dirname, './src/templates/'),
 			files: [
@@ -51,7 +55,7 @@ module.exports = {
 		})
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				include: path.resolve(SRC_DIR),
@@ -59,20 +63,24 @@ module.exports = {
 				loader: 'babel-loader'
 			},
 			{
-				test: /\.scss$/,
-				include: path.resolve(SRC_DIR, 'css'),
-				loader: ExtractTextPlugin.extract(
-					'style',
-					'css!sass'
-				)
+				test: /\.s?css$/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: path.resolve(SRC_DIR, 'css')
+						}
+					},
+					'css-loader',
+					'sass-loader'
+				]
 			},
 			{
 				test: /\.svg$/,
 				include: path.resolve('img'),
-				loader: 'svg-sprite?' + JSON.stringify({
+				loader: 'svg-sprite-loader?' + JSON.stringify({
 					name: '[name]',
-					prefixize: true,
-					// spriteModule: 'utils/my-custom-sprite'
+					prefixize: true
 				})
 			}	
 		]

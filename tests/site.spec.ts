@@ -12,6 +12,9 @@ for (const route of routes) {
     const response = await page.goto(route.path);
     expect(response?.status()).toBe(200);
     await expect(page.getByRole('heading', { level: 1, name: route.heading })).toBeVisible();
+    if (route.path === '/') {
+      await expect(page.locator('.lead')).toContainText('System Architect at GDIT');
+    }
     await expect(page.getByRole('navigation').getByRole('link', { name: route.nav })).toHaveAttribute('aria-current', 'page');
     await expect(page).toHaveTitle(route.title);
     await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', `https://www.justinclagg.com${route.path}`);

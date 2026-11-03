@@ -9,7 +9,7 @@ export class Home {
   constructor() {
     setPageMetadata(
       'Justin Clagg',
-      'Justin Clagg works on web development, test automation, and software modernization.',
+      'Justin Clagg is a System Architect at GDIT working on web development, test automation, and software modernization.',
       '/',
     );
   }

@@ -19,7 +19,7 @@ import { isActive, Router, RouterOutlet } from '@angular/router';
       </nav>
     </header>
     <main id="content" tabindex="-1"><router-outlet /></main>
-    <footer class="site-footer">
+    <footer class="site-footer" hidden>
       <div class="frame">© Justin Clagg</div>
     </footer>
   `,

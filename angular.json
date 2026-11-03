@@ -42,7 +42,13 @@
             "development": {
               "optimization": false,
               "sourceMap": true,
-              "extractLicenses": false
+              "extractLicenses": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/flow-field/lab-loader.ts",
+                  "with": "src/app/flow-field/lab-loader.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

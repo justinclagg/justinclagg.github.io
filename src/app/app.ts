@@ -1,10 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { afterNextRender, Component, DestroyRef, inject, ViewContainerRef } from '@angular/core';
+import { FlowField } from './flow-field/flow-field';
+import { flowLabLoader } from './flow-field/lab-loader';
 import { isActive, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'site-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FlowField],
   template: `
+    @defer (on idle) { <site-flow-field [contact]="contactPage()" /> }
     <a class="skip-link" [attr.href]="contactPage() ? '/contact/#content' : '/#content'">Skip to content</a>
     <header class="site-header frame">
       <a class="wordmark" href="/">Justin Clagg</a>
@@ -22,6 +25,18 @@ import { isActive, Router, RouterOutlet } from '@angular/router';
   `,
 })
 export class App {
+  constructor() {
+    const container = inject(ViewContainerRef);
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(async () => {
+      const loader = flowLabLoader();
+      if (loader) {
+        const component = await loader();
+        if (!destroyRef.destroyed) container.createComponent(component);
+      }
+    });
+  }
+
   private readonly router = inject(Router);
   private readonly pathMatch = { paths: 'exact' } as const;
 

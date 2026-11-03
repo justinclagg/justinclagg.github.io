@@ -183,6 +183,24 @@ test('the flow field resumes after loading in a hidden tab', async ({ page }) =>
   await expect(field).toHaveAttribute('data-flow-state', 'running');
 });
 
+test('the flow field resumes when a hidden page becomes visible without a visibility event', async ({ page }) => {
+  await page.addInitScript(() => {
+    const visibility = window as Window & { flowHidden: boolean };
+    visibility.flowHidden = true;
+    Object.defineProperties(document, {
+      hidden: { get: () => visibility.flowHidden },
+      visibilityState: { get: () => visibility.flowHidden ? 'hidden' : 'visible' },
+    });
+  });
+  await page.goto('/');
+  const field = page.locator('site-flow-field');
+  await expect(field.locator('canvas')).toHaveAttribute('width', /\d+/);
+  await expect(field).toHaveAttribute('data-flow-state', 'paused');
+  await page.evaluate(() => { (window as Window & { flowHidden: boolean }).flowHidden = false; });
+  await page.mouse.move(200, 300);
+  await expect(field).toHaveAttribute('data-flow-state', 'running');
+});
+
 test('the production JavaScript excludes the development lab', async () => {
   const { readdir, readFile } = await import('node:fs/promises');
   const { join } = await import('node:path');

@@ -86,12 +86,15 @@ export class FlowField {
         meta();
       }
     }, { injector: this.injector });
+    // Some embedded browsers skip visibilitychange when a page that loaded hidden is shown,
+    // so re-read document.hidden on interaction and focus as well.
+    const visibility = () => hidden.set(document.hidden);
     const move = (e: PointerEvent) => {
+      if (hidden() !== document.hidden) visibility();
       if (e.target instanceof Element && e.target.closest('[data-flow-ignore]')) engine.pointerLeave();
       else engine.pointerMove(e.clientX, e.clientY, performance.now());
     };
     const leave = () => engine.pointerLeave();
-    const visibility = () => hidden.set(document.hidden);
     const motion = () => reduced.set(media.matches);
     const scroll = () => { measure(); if (this.state() === 'paused') engine.render(performance.now()); };
     window.addEventListener('pointermove', move, { passive: true });
@@ -99,6 +102,8 @@ export class FlowField {
     window.addEventListener('resize', resize);
     window.addEventListener('scroll', scroll, { passive: true });
     document.addEventListener('visibilitychange', visibility);
+    window.addEventListener('focus', visibility);
+    window.addEventListener('pageshow', visibility);
     media.addEventListener('change', motion);
     void document.fonts.ready.then(() => { if (!destroyed) { measure(); renderStopped(); } });
     const navigation = this.router.events.subscribe((event) => {
@@ -115,6 +120,8 @@ export class FlowField {
       window.removeEventListener('resize', resize);
       window.removeEventListener('scroll', scroll);
       document.removeEventListener('visibilitychange', visibility);
+      window.removeEventListener('focus', visibility);
+      window.removeEventListener('pageshow', visibility);
       media.removeEventListener('change', motion);
     });
   }

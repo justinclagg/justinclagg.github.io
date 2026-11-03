@@ -30,18 +30,33 @@ On Linux CI, use `npx playwright install --with-deps chromium` to install browse
 
 Publish only the files in `dist/website/browser/`. That directory is the static artifact and can be served without npm, Angular, or a Node.js process. The rest of `dist/website/` contains build metadata or build-time files.
 
-## GitHub Pages release
+## Publish a routine update
 
-The pull request workflow runs checks with read-only permissions. The deploy workflow runs only when manually dispatched on `master`. Its build job re-runs all checks and uploads the browser directory. The deployment job has only Pages and OpenID Connect permissions.
+Pushing to `master` does not deploy the site. Run the **Deploy website** workflow after the change reaches `master`.
 
-1. Merge the reviewed change to `master`. Record the current Pages publishing source, custom domain and DNS records, and the last working revision or Pages deployment before changing any settings.
-2. In repository **Settings → Pages**, select **GitHub Actions** as the source. Confirm the custom domain is `www.justinclagg.com`. Limit the `github-pages` environment to deployments from `master`. GitHub stores the domain in repository settings for Actions deployments. The artifact also includes `CNAME` for portability.
-3. In **Actions → Deploy website**, select **Run workflow** and choose `master`. Wait for the build and deployment jobs to succeed. Use the URL reported by the deployment job for verification.
-4. Confirm the `www` DNS record points to the Pages hostname and allow DNS and certificate provisioning to finish before enabling **Enforce HTTPS**. Verify that the canonical host has a valid certificate and serves the artifact over HTTPS.
+1. Run `npm run check` and merge the change to `master` after any required review.
+2. In **Actions → Deploy website**, select **Run workflow** and choose `master`.
+3. Wait for the build and deployment jobs to succeed, then [verify the live host](#verify-the-live-host).
+
+The pull request workflow runs checks with read-only permissions. The deploy workflow runs the checks again and uploads only `dist/website/browser/`. Its deployment job has only Pages and OpenID Connect permissions.
+
+### What is public
+
+Everything in `public/` is copied into the site artifact. Treat that directory and the generated browser output as public, including JavaScript bundles and assets that the site does not link to. Keep credentials, private documents, and local configuration out of the artifact and the repository.
+
+The GitHub repository is also public. Files tracked there, including source and documentation, can be read on GitHub. Removing a file in a later commit leaves earlier copies in Git history.
 
 ### Verify the live host
 
 Check that `/` and `/contact/` return HTTP 200 and show the matching page and canonical URL. Check that `/contact` resolves to `/contact/`. The legacy `/contact.html` and `/construction.html` pages use immediate HTML redirects with visible link fallbacks. Open them in a browser to confirm the final addresses. Check that an unknown path returns HTTP 404 with the custom page. Also check `/robots.txt`, `/sitemap.xml`, and the contact links.
+
+## Set up or restore GitHub Pages
+
+Use these steps when configuring Pages for the first time or changing its hosting settings.
+
+1. Before changing settings, record the current Pages source, custom domain, DNS records, and last working revision or Pages deployment, if available.
+2. In **Settings → Pages**, select **GitHub Actions** as the source and set the custom domain to `www.justinclagg.com`. Limit the `github-pages` environment to deployments from `master`. GitHub stores the domain in repository settings for Actions deployments. The artifact also includes `CNAME` for portability.
+3. Confirm the `www` DNS record points to the Pages hostname. [Run a release](#publish-a-routine-update), allow DNS and certificate provisioning to finish, then enable **Enforce HTTPS**. Verify that the canonical host has a valid certificate and serves the artifact over HTTPS.
 
 ### Roll back
 

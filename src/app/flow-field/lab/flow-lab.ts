@@ -99,29 +99,31 @@ type BooleanSetting = typeof BOOLEAN[number];
 </div>
 }
 `,
-  styles: `:host { position: fixed; right: 16px; bottom: 16px; z-index: 10; width: 300px; max-height: calc(100vh - 32px);
-  overflow: auto; font: 13px/1.4 system-ui, sans-serif; color: #e8f4f2;
+  styles: `:host { position: fixed; right: 16px; bottom: 16px; z-index: 10; box-sizing: border-box; width: min(320px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+  overflow: hidden auto; font: 13px/1.4 system-ui, sans-serif; color: #e8f4f2;
   background: rgb(8 24 28 / 86%); backdrop-filter: blur(8px); border: 1px solid rgb(255 255 255 / 18%);
   border-radius: 10px; box-shadow: 0 8px 30px rgb(0 0 0 / 30%); }
 :host.collapsed .pb { display: none; }
-:host .ph { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px;
+:host .ph { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;
   border-bottom: 1px solid rgb(255 255 255 / 12%); }
-:host .pb { padding: 10px 12px 12px; display: grid; gap: 8px; }
+:host .pb { padding: 10px 14px 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+:host .pb > * { min-width: 0; }
 :host button { font: inherit; color: inherit; background: rgb(255 255 255 / 8%);
   border: 1px solid rgb(255 255 255 / 18%); border-radius: 6px; padding: 4px 8px; cursor: pointer; }
 :host button:hover { background: rgb(255 255 255 / 16%); }
 :host button.on { background: #b0f0e4; color: #08303a; border-color: #b0f0e4; }
 :host .presets { display: flex; flex-wrap: wrap; gap: 5px; }
 :host .sec { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; margin-top: 4px; }
-:host label { display: grid; grid-template-columns: 96px 1fr 30px; align-items: center; gap: 6px; }
-:host label.sel { grid-template-columns: 96px 1fr; }
-:host label.check { grid-template-columns: 18px 1fr; }
+:host label { display: grid; grid-template-columns: 92px minmax(0, 1fr) 30px; align-items: center; gap: 6px; }
+:host label.sel { grid-template-columns: 92px minmax(0, 1fr); }
+:host label.check { grid-template-columns: 18px minmax(0, 1fr); }
 :host select { font: inherit; color: inherit; background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 18%); border-radius: 6px; padding: 3px 4px; }
+  border: 1px solid rgb(255 255 255 / 18%); border-radius: 6px; padding: 3px 4px;
+  width: 100%; min-width: 0; text-overflow: ellipsis; }
 :host select option { background: #0c2a30; }
-:host input[type=range] { width: 100%; accent-color: #b0f0e4; }
+:host input[type=range] { width: 100%; min-width: 0; margin: 0; accent-color: #b0f0e4; }
 :host output { text-align: right; opacity: 0.75; font-variant-numeric: tabular-nums; }
-:host .row { display: flex; gap: 6px; }
+:host .row { display: flex; flex-wrap: wrap; gap: 6px; }
 :host .desc { margin: 0; padding: 8px; border-radius: 6px; background: rgb(255 255 255 / 6%); }
 :host .meta, :host .hint { margin: 0; opacity: 0.6; font-size: 12px; }
 

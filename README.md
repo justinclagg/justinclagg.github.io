@@ -14,6 +14,10 @@ npm start
 
 Open `http://localhost:4200/`. Edit the page copy in `src/app/home.html` and `src/app/contact.html`, the page metadata in the corresponding TypeScript files, and shared styles in `src/styles.css`. Static files, redirect pages, and the custom 404 live in `public/`.
 
+## Background effect and lab
+
+`npm start` shows the effects lab panel; H hides it. Tune the effect, use **Copy as site default**, and paste the result into `src/app/flow-field/flow-settings.ts`. Production builds never include the lab.
+
 ## Verify the production build
 
 ```sh
@@ -22,7 +26,7 @@ npm run check
 npm run preview
 ```
 
-On Linux CI, use `npx playwright install --with-deps chromium` to install browser system dependencies. The check builds the site, runs browser tests against the built files, and audits the entire npm dependency tree. The preview server at `http://127.0.0.1:4173/` models static directory indexes and custom 404 responses for local validation.
+On Linux CI, use `npx playwright install --with-deps chromium` to install browser system dependencies. The check builds the production site and development lab, runs browser tests against the built files, and audits the entire npm dependency tree. The preview server at `http://127.0.0.1:4173/` models static directory indexes and custom 404 responses for local validation.
 
 Publish only the files in `dist/website/browser/`. That directory is the static artifact and can be served without npm, Angular, or a Node.js process. The rest of `dist/website/` contains build metadata or build-time files.
 

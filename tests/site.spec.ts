@@ -132,3 +132,52 @@ test('hydrated pages keep the correct title, metadata, and current link during h
   await page.goForward();
   await verifyPage(routes[1]);
 });
+
+test('the deferred flow field draws an accessible decorative canvas without browser errors', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text());
+  });
+  await page.goto('/');
+  const field = page.locator('site-flow-field[data-flow-state="running"]');
+  await expect(field).toHaveAttribute('aria-hidden', 'true');
+  const canvas = field.locator('canvas[aria-hidden="true"]');
+  await expect(canvas).toHaveCount(1);
+  await page.waitForTimeout(2000);
+  await expect.poll(() => canvas.evaluate((element: HTMLCanvasElement) => {
+    const ctx = element.getContext('2d')!;
+    return ctx.getImageData(0, 0, element.width, element.height).data.some((value, index) => index % 4 === 3 && value > 0);
+  })).toBe(true);
+  await expect(page.locator('site-flow-lab')).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
+
+test('the flow field follows reduced-motion preferences', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.locator('site-flow-field')).toHaveAttribute('data-flow-state', 'still');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(page.locator('site-flow-field')).toHaveAttribute('data-flow-state', 'running');
+});
+
+test('the production JavaScript excludes the development lab', async () => {
+  const { readdir, readFile } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const root = 'dist/website/browser';
+  let files = 0;
+  async function scan(directory: string) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const path = join(directory, entry.name);
+      if (entry.isDirectory()) await scan(path);
+      else if (entry.name.endsWith('.js')) {
+        files++;
+        const script = await readFile(path, 'utf8');
+        expect(script, path).not.toContain('site-flow-lab');
+        expect(script, path).not.toContain('Copy as site default');
+      }
+    }
+  }
+  await scan(root);
+  expect(files).toBeGreaterThan(0);
+});

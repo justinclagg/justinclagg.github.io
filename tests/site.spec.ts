@@ -13,7 +13,15 @@ for (const route of routes) {
     expect(response?.status()).toBe(200);
     await expect(page.getByRole('heading', { level: 1, name: route.heading })).toBeVisible();
     if (route.path === '/') {
-      await expect(page.locator('.lead')).toContainText('System Architect at GDIT');
+      await expect(page.locator('.intro p')).toHaveCount(1);
+      await expect(page.locator('.lead')).toHaveText('I’m a System Architect working at GDIT.');
+      await expect(page.getByRole('main')).not.toContainText('What I work on');
+      await expect(page.getByRole('main').getByRole('link')).toHaveCount(0);
+      await expect(page.locator('meta[name=description]')).toHaveAttribute('content', 'Justin Clagg is a System Architect working at GDIT.');
+    } else {
+      await expect(page.getByRole('main').getByRole('link')).toHaveCount(3);
+      await expect(page.getByRole('main')).not.toContainText('Email is the easiest way to reach me.');
+      await expect(page.getByRole('main')).not.toContainText('Find me online');
     }
     await expect(page.getByRole('navigation').getByRole('link', { name: route.nav })).toHaveAttribute('aria-current', 'page');
     await expect(page).toHaveTitle(route.title);
@@ -57,6 +65,8 @@ test('main navigation and contact links work with JavaScript disabled', async ({
   await expect(page.getByRole('link', { name: 'justinclagg@gmail.com' })).toHaveAttribute('href', 'mailto:justinclagg@gmail.com');
   await expect(page.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/justinclagg');
   await expect(page.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/justinclagg');
+  await expect(page.getByRole('list', { name: 'Online profiles' })).toBeVisible();
+  await expect(page.getByRole('main')).not.toContainText('Find me online');
   await page.getByRole('navigation').getByRole('link', { name: 'About' }).click();
   await expect(page).toHaveURL('/');
   await page.close();

@@ -104,6 +104,10 @@ main:focus-visible {
   padding-block: clamp(2.5rem, 10vw, 7.5rem);
 }
 
+.page-grid-single {
+  grid-template-columns: minmax(0, 36rem);
+}
+
 h1,
 h2,
 h3,

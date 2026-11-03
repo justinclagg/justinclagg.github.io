@@ -16,7 +16,8 @@ for (const route of routes) {
       await expect(page.locator('.intro p')).toHaveCount(1);
       await expect(page.locator('.lead')).toHaveText('I’m a System Architect working at GDIT.');
       await expect(page.getByRole('main')).not.toContainText('What I work on');
-      await expect(page.getByRole('main').getByRole('link')).toHaveCount(0);
+      await expect(page.getByRole('main').getByRole('link')).toHaveCount(1);
+      await expect(page.getByRole('main').getByRole('link', { name: 'Reach out' })).toHaveAttribute('href', '/contact/');
       await expect(page.locator('meta[name=description]')).toHaveAttribute('content', 'Justin Clagg is a System Architect working at GDIT.');
     } else {
       await expect(page.getByRole('main').getByRole('link')).toHaveCount(3);

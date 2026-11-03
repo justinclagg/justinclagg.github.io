@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 600 600" xml:space="preserve" viewBox="0 0 600 600" version="1.1" y="0px" x="0px" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
-<circle cy="300" cx="300" r="50.2" fill="#fff"/>
-<path d="m300 198c67.4 0 130 9.66 177 25.9 56.8 19.6 91.8 49.2 91.8 76.1 0 28-37 59.5-98.1 79.7-46.2 15.3-107 23.3-171 23.3-65.6 0-128-7.49-174-23.4-59-20.2-94.6-52.1-94.6-79.6 0-26.6 33.4-56.1 89.4-75.6 46-16 111-26 179-26z" stroke="#fff" stroke-miterlimit="10" stroke-width="24" fill="none"/>
-<path d="m211 249c33.6-58.3 73.3-108 111-140 45.4-39.5 88.5-54.9 112-41.5 24.2 14 33 61.8 20.1 125-9.81 47.6-33.2 104-65.2 160-32.7 56.8-70.2 107-107 139-47 41.1-92.4 55.9-116 42.2-23.1-13.3-31.9-56.9-20.8-115 8-50 32-110 66-169z" stroke="#fff" stroke-miterlimit="10" stroke-width="24" fill="none"/>
-<path d="m211 351c-33.7-58.3-56.7-117-66.3-166-11.5-59-3.38-104 19.9-118 24.2-14 70.1 2.24 118 44.9 36.4 32.3 73.7 80.8 106 136 32.8 56.7 57.5 114 67 163 12.1 61.2 2.31 108-21.5 122-23.1 13.3-65.2-0.784-110-39.5-38-33-79-84-113-143z" stroke="#fff" stroke-miterlimit="10" stroke-width="24" fill="none"/>
-</svg>

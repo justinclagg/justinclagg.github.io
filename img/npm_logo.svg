@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 256 150">
-<path d="m0 78.1v85.5h71.2v14.3h56.8v-14.3h128v-85.5h-256z" fill="#008080"/>
-<path d="m42.5 92.4h-28.2v14.3 42.5h28.2v-42.5h14.3v42.5h14.3v-42.5-14.3h-28.7z" fill="#fff"/>
-<path d="m85.5 92.4v53.9 2.97 14.3h28.7v-14.3h28.2v-56.8h-56.8zm42.5 42.5h-13.8v-28.2h13.8v28.2z" fill="#fff"/>
-<path d="m185 92.4h-28.2v14.3 42.5h28.2v-42.5h14.3v42.5h14.3v-42.5h14.3v42.5h14.3v-42.5-13.3-0.988h-57.3z" fill="#fff"/>
-</svg>

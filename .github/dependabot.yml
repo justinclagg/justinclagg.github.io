@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
+      browser-tests:
+        patterns:
+          - "@playwright/*"
+          - "@axe-core/*"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

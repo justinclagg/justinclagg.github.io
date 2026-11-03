@@ -1,33 +1,35 @@
 {
-  "name": "justinclagg.github.io",
-  "version": "1.1.0",
-  "description": "Personal website of Justin Clagg",
-  "main": "index.js",
+  "name": "justinclagg-website",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "^22.22.3"
+  },
   "scripts": {
-    "start": "webpack -p --config ./webpack.config.js"
+    "start": "ng serve",
+    "build": "ng build && node scripts/finalize-build.mjs",
+    "test": "playwright test",
+    "preview": "node scripts/preview.mjs",
+    "check": "npm run build && npm test && npm audit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/justinclagg/justinclagg.github.io.git"
+  "dependencies": {
+    "@angular/common": "22.2.4",
+    "@angular/compiler": "22.2.4",
+    "@angular/core": "22.2.4",
+    "@angular/platform-browser": "22.2.4",
+    "@angular/platform-server": "22.2.4",
+    "@angular/router": "22.2.4",
+    "@angular/ssr": "22.2.5",
+    "@fontsource/alegreya-sans": "5.3.0",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1"
   },
-  "author": "Justin Clagg",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/justinclagg/justinclagg.github.io/issues"
-  },
-  "homepage": "https://github.com/justinclagg/justinclagg.github.io#readme",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "ejs-webpack-builder": "^2.0.1",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
-    "svg-sprite-loader": "^4.1.6",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "@angular/build": "22.2.5",
+    "@angular/cli": "22.2.5",
+    "@angular/compiler-cli": "22.2.4",
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.64.1",
+    "typescript": "6.0.3"
   }
 }

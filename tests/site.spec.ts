@@ -201,6 +201,32 @@ test('the flow field resumes when a hidden page becomes visible without a visibi
   await expect(field).toHaveAttribute('data-flow-state', 'running');
 });
 
+test('the flow field starts cleanly in a zero-size viewport and draws once it has room', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+  await page.addInitScript(() => {
+    const view = window as Window & { flowCollapsed: boolean };
+    view.flowCollapsed = true;
+    const width = Object.getOwnPropertyDescriptor(window, 'innerWidth')!.get!;
+    const height = Object.getOwnPropertyDescriptor(window, 'innerHeight')!.get!;
+    Object.defineProperties(window, {
+      innerWidth: { get: () => (view.flowCollapsed ? 0 : width.call(window)), configurable: true },
+      innerHeight: { get: () => (view.flowCollapsed ? 0 : height.call(window)), configurable: true },
+    });
+  });
+  await page.goto('/');
+  const field = page.locator('site-flow-field');
+  await expect(field).toHaveAttribute('data-flow-state', 'running');
+  await expect(field.locator('canvas')).toHaveAttribute('width', '0');
+  await page.evaluate(() => {
+    (window as Window & { flowCollapsed: boolean }).flowCollapsed = false;
+    window.dispatchEvent(new Event('resize'));
+  });
+  await expect(field.locator('canvas')).not.toHaveAttribute('width', '0');
+  expect(errors).toEqual([]);
+});
+
 test('the production JavaScript excludes the development lab', async () => {
   const { readdir, readFile } = await import('node:fs/promises');
   const { join } = await import('node:path');

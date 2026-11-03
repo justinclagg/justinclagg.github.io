@@ -341,6 +341,8 @@ function simulation(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, in
   }
 
   function render(now: number, still = false) {
+    // A hidden or collapsed viewport has no pixels to draw, and drawImage throws on 0-size canvases.
+    if (canvas.width === 0 || canvas.height === 0) return;
     ctx.clearRect(0, 0, W, H);
     spotNow = now;
     const fade = Math.min(1, (now - introStart) / 2500);

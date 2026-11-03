@@ -36,7 +36,7 @@ for (const route of routes) {
     await page.close();
   });
 
-  test(`${route.path} passes automated accessibility checks at mobile width`, async ({ page }) => {
+  test(`${route.path} passes automated accessibility checks at mobile width`, async ({ page, baseURL }) => {
     await page.setViewportSize({ width: 320, height: 800 });
     const browserErrors: string[] = [];
     page.on('pageerror', (error) => browserErrors.push(error.message));
@@ -46,7 +46,7 @@ for (const route of routes) {
 
     const externalRequests: string[] = [];
     page.on('request', (request) => {
-      if (!request.url().startsWith('http://127.0.0.1:4173/')) externalRequests.push(request.url());
+      if (!request.url().startsWith(`${baseURL}/`)) externalRequests.push(request.url());
     });
     await page.goto(route.path, { waitUntil: 'networkidle' });
     await expect(page.getByRole('heading', { level: 1, name: route.heading })).toBeVisible();
@@ -159,6 +159,28 @@ test('the flow field follows reduced-motion preferences', async ({ page }) => {
   await expect(page.locator('site-flow-field')).toHaveAttribute('data-flow-state', 'still');
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await expect(page.locator('site-flow-field')).toHaveAttribute('data-flow-state', 'running');
+});
+
+test('the flow field resumes after loading in a hidden tab', async ({ page }) => {
+  await page.addInitScript(() => {
+    const visibility = window as Window & { flowHidden: boolean };
+    visibility.flowHidden = true;
+    Object.defineProperties(document, {
+      hidden: { get: () => visibility.flowHidden },
+      visibilityState: { get: () => visibility.flowHidden ? 'hidden' : 'visible' },
+    });
+  });
+  await page.goto('/');
+  const field = page.locator('site-flow-field');
+  // Let the deferred field initialize and its first synchronization effect settle.
+  await expect(field.locator('canvas')).toHaveAttribute('width', /\d+/);
+  await page.evaluate(() => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  await expect(field).toHaveAttribute('data-flow-state', 'paused');
+  await page.evaluate(() => {
+    (window as Window & { flowHidden: boolean }).flowHidden = false;
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await expect(field).toHaveAttribute('data-flow-state', 'running');
 });
 
 test('the production JavaScript excludes the development lab', async () => {

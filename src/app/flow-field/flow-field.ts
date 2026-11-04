@@ -58,9 +58,17 @@ export class FlowField {
       const r = document.querySelector('main .intro')?.getBoundingClientRect();
       engine.setQuietRect(r ? { l: r.left - 24, t: r.top - 24, r: r.right + 24, b: r.bottom + 24 } : null);
     };
+    // When the page fits on screen, a drag steers the effect instead of panning the page.
+    // A page that scrolls or is pinch-zoomed keeps normal panning.
+    const updateTouchSteer = () => {
+      const root = document.documentElement;
+      const fits = root.scrollHeight <= root.clientHeight;
+      root.toggleAttribute('data-touch-steer', fits && (window.visualViewport?.scale ?? 1) <= 1.01);
+    };
     const resize = () => {
       engine.resize(innerWidth, innerHeight, devicePixelRatio);
       measure();
+      updateTouchSteer();
       renderStopped();
     };
     resize();
@@ -91,33 +99,46 @@ export class FlowField {
     const visibility = () => hidden.set(document.hidden);
     const move = (e: PointerEvent) => {
       if (hidden() !== document.hidden) visibility();
+      if (!e.isPrimary) return;
       if (e.target instanceof Element && e.target.closest('[data-flow-ignore]')) engine.pointerLeave();
       else engine.pointerMove(e.clientX, e.clientY, performance.now());
     };
     const leave = () => engine.pointerLeave();
+    const lift = (e: PointerEvent) => { if (e.isPrimary && e.pointerType === 'touch') leave(); };
     const motion = () => reduced.set(media.matches);
     const scroll = () => { measure(); if (this.state() === 'paused') engine.render(performance.now()); };
     window.addEventListener('pointermove', move, { passive: true });
+    window.addEventListener('pointerdown', move, { passive: true });
+    window.addEventListener('pointerup', lift, { passive: true });
+    window.addEventListener('pointercancel', lift, { passive: true });
     document.documentElement.addEventListener('mouseleave', leave);
     window.addEventListener('resize', resize);
+    window.visualViewport?.addEventListener('resize', updateTouchSteer);
     window.addEventListener('scroll', scroll, { passive: true });
     document.addEventListener('visibilitychange', visibility);
     window.addEventListener('focus', visibility);
     window.addEventListener('pageshow', visibility);
     media.addEventListener('change', motion);
-    void document.fonts.ready.then(() => { if (!destroyed) { measure(); renderStopped(); } });
+    void document.fonts.ready.then(() => {
+      if (!destroyed) { measure(); updateTouchSteer(); renderStopped(); }
+    });
     const navigation = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         cancelAnimationFrame(navigationFrame);
-        navigationFrame = requestAnimationFrame(() => { measure(); renderStopped(); });
+        navigationFrame = requestAnimationFrame(() => { measure(); updateTouchSteer(); renderStopped(); });
       }
     });
     this.destroyRef.onDestroy(() => {
       destroyed = true;
       stop(); cancelAnimationFrame(navigationFrame); sync.destroy(); navigation.unsubscribe();
       window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerdown', move);
+      window.removeEventListener('pointerup', lift);
+      window.removeEventListener('pointercancel', lift);
       document.documentElement.removeEventListener('mouseleave', leave);
       window.removeEventListener('resize', resize);
+      window.visualViewport?.removeEventListener('resize', updateTouchSteer);
+      document.documentElement.removeAttribute('data-touch-steer');
       window.removeEventListener('scroll', scroll);
       document.removeEventListener('visibilitychange', visibility);
       window.removeEventListener('focus', visibility);

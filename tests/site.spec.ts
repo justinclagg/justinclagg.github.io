@@ -114,23 +114,33 @@ test('the Angular client fallback is excluded from the public artifact', async (
   expect((await request.get('/index.csr.html')).status()).toBe(404);
 });
 
-test('hydrated pages keep the correct title, metadata, and current link during history navigation', async ({ page }) => {
+test('internal links and browser history keep the same running flow field and update page metadata', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('navigation').getByRole('link', { name: 'Contact' }).click();
+  const canvas = page.locator('site-flow-field[data-flow-state="running"] canvas');
+  await canvas.evaluate((element) => element.setAttribute('data-initial-canvas', ''));
+  const nav = page.getByRole('navigation', { name: 'Main' });
 
   async function verifyPage(route: (typeof routes)[number]) {
-    await page.waitForLoadState('networkidle');
     await expect(page).toHaveURL(route.path);
+    await expect(page.getByRole('heading', { level: 1, name: route.heading })).toBeVisible();
     await expect(page).toHaveTitle(route.title);
     await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', `https://www.justinclagg.com${route.path}`);
-    await expect(page.getByRole('navigation').locator('[aria-current="page"]')).toHaveText(route.nav);
+    await expect(nav.locator('[aria-current="page"]')).toHaveText(route.nav);
+    await expect(canvas).toHaveAttribute('data-initial-canvas', '');
   }
 
+  await page.getByRole('link', { name: 'Reach out' }).click();
   await verifyPage(routes[1]);
   await page.goBack();
   await verifyPage(routes[0]);
   await page.goForward();
   await verifyPage(routes[1]);
+  await page.getByRole('link', { name: 'Justin Clagg', exact: true }).click();
+  await verifyPage(routes[0]);
+  await nav.getByRole('link', { name: 'Contact' }).click();
+  await verifyPage(routes[1]);
+  await nav.getByRole('link', { name: 'About' }).click();
+  await verifyPage(routes[0]);
 });
 
 test('the deferred flow field draws an accessible decorative canvas without browser errors', async ({ page }) => {

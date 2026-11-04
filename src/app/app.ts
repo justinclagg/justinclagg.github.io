@@ -1,20 +1,20 @@
 import { afterNextRender, Component, DestroyRef, inject, ViewContainerRef } from '@angular/core';
 import { FlowField } from './flow-field/flow-field';
 import { flowLabLoader } from './flow-field/lab-loader';
-import { isActive, Router, RouterOutlet } from '@angular/router';
+import { isActive, Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'site-root',
-  imports: [RouterOutlet, FlowField],
+  imports: [RouterLink, RouterOutlet, FlowField],
   template: `
     @defer (on idle) { <site-flow-field [contact]="contactPage()" /> }
     <a class="skip-link" [attr.href]="contactPage() ? '/contact/#content' : '/#content'">Skip to content</a>
     <header class="site-header frame">
-      <a class="wordmark" href="/">Justin Clagg</a>
+      <a class="wordmark" routerLink="/">Justin Clagg</a>
       <nav aria-label="Main">
         <ul>
-          <li><a href="/" [attr.aria-current]="aboutPage() ? 'page' : null">About</a></li>
-          <li><a href="/contact/" [attr.aria-current]="contactPage() ? 'page' : null">Contact</a></li>
+          <li><a routerLink="/" [attr.aria-current]="aboutPage() ? 'page' : null">About</a></li>
+          <li><a routerLink="/contact" [attr.aria-current]="contactPage() ? 'page' : null">Contact</a></li>
         </ul>
       </nav>
     </header>

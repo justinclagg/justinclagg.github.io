@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 const routes = [
   { path: '/', heading: 'About me', nav: 'About', title: 'Justin Clagg' },
@@ -225,6 +225,85 @@ test('the flow field starts cleanly in a zero-size viewport and draws once it ha
   });
   await expect(field.locator('canvas')).not.toHaveAttribute('width', '0');
   expect(errors).toEqual([]);
+});
+
+const pageColors = (page: Page) => page.evaluate(() => {
+  const channels = getComputedStyle(document.documentElement).backgroundColor.match(/\d+/g)!.slice(0, 3);
+  const background = `#${channels.map((n) => Number(n).toString(16).padStart(2, '0')).join('')}`;
+  return { background, theme: document.querySelector('meta[name=theme-color]')?.getAttribute('content') };
+});
+
+test('the browser theme color matches each page background, before and after navigation', async ({ page, request }) => {
+  const colors = { '/': '#006a6a', '/contact/': '#38569d' };
+  for (const [path, color] of Object.entries(colors)) {
+    const html = await (await request.get(path)).text();
+    expect(html.match(/<meta[^>]*name="theme-color"[^>]*>/g)).toEqual([expect.stringContaining(color)]);
+  }
+
+  async function expectColor(path: keyof typeof colors) {
+    await expect(page).toHaveURL(path);
+    await expect.poll(() => pageColors(page)).toEqual({ background: colors[path], theme: colors[path] });
+  }
+
+  await page.goto('/');
+  await page.waitForLoadState('networkidle');
+  await page.getByRole('navigation').getByRole('link', { name: 'Contact' }).click();
+  await expectColor('/contact/');
+  await page.getByRole('navigation').getByRole('link', { name: 'About' }).click();
+  await expectColor('/');
+});
+
+for (const viewport of [{ width: 375, height: 667 }, { width: 320, height: 568 }]) {
+  for (const route of routes) {
+    test(`${route.path} fits a ${viewport.width}x${viewport.height} screen without scrolling`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      await page.goto(route.path);
+      await expect(page.locator('html')).toHaveAttribute('data-touch-steer');
+      const height = await page.evaluate(() => document.documentElement.scrollHeight);
+      expect(height).toBeLessThanOrEqual(viewport.height);
+      await expect(page.locator('html')).toHaveCSS('touch-action', 'pinch-zoom');
+    });
+  }
+}
+
+test('a page taller than the screen keeps normal scrolling', async ({ page }) => {
+  await page.setViewportSize({ width: 667, height: 375 });
+  await page.goto('/contact/');
+  await expect(page.locator('site-flow-field')).toHaveAttribute('data-flow-state', 'running');
+  await expect(page.locator('html')).not.toHaveAttribute('data-touch-steer');
+  const { scrollHeight, clientHeight } = await page.evaluate(() => {
+    const { scrollHeight, clientHeight } = document.documentElement;
+    return { scrollHeight, clientHeight };
+  });
+  expect(scrollHeight).toBeGreaterThan(clientHeight);
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+  await expect(page.getByRole('link', { name: 'LinkedIn' })).toBeInViewport();
+});
+
+test('a touch drag keeps reaching the flow field instead of panning the page', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ baseURL, hasTouch: true, viewport: { width: 375, height: 667 } });
+  const page = await context.newPage();
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveAttribute('data-touch-steer');
+  await page.evaluate(() => {
+    const seen = { move: 0, cancel: 0, up: 0 };
+    Object.assign(window, { seen });
+    addEventListener('pointermove', () => seen.move++);
+    addEventListener('pointercancel', () => seen.cancel++);
+    addEventListener('pointerup', () => seen.up++);
+  });
+
+  const touch = await context.newCDPSession(page);
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 180, y: 560 }] });
+  for (let step = 1; step <= 12; step++) {
+    await touch.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 180, y: 560 - step * 30 }] });
+  }
+  await touch.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+
+  await expect.poll(() => page.evaluate(() => (window as unknown as { seen: object }).seen))
+    .toEqual({ move: expect.any(Number), cancel: 0, up: 1 });
+  expect(await page.evaluate(() => (window as unknown as { seen: { move: number } }).seen.move)).toBeGreaterThan(5);
+  await context.close();
 });
 
 test('the production JavaScript excludes the development lab', async () => {

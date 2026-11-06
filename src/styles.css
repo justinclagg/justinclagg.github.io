@@ -163,6 +163,7 @@ h3 {
 .contact-email {
   font-size: 1.35rem;
   font-weight: 400;
+  text-decoration: none;
 }
 
 .profile-links {

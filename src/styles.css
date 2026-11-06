@@ -160,6 +160,33 @@ h3 {
   text-decoration-thickness: 2px;
 }
 
+.contact-email {
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.profile-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.profile-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 0.25rem;
+}
+
+.profile-links a:hover,
+.profile-links a:focus-visible {
+  background: rgb(255 255 255 / 12%);
+}
+
 .details {
   padding-top: clamp(0rem, 6vw, 4.5rem);
 }

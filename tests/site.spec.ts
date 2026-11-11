@@ -79,9 +79,11 @@ test('contact email copies to clipboard on click with visual feedback', async ({
   await page.goto('/contact/');
   const copyBtn = page.getByRole('button', { name: 'Copy work@justinclagg.com to clipboard' });
   await expect(copyBtn).toBeVisible();
+  await copyBtn.hover();
+  await expect(copyBtn.locator('.contact-email-text')).toHaveCSS('text-decoration-line', 'none');
   await expect(page.getByRole('link', { name: 'Open work@justinclagg.com in email client' })).toHaveAttribute('href', 'mailto:work@justinclagg.com');
   await copyBtn.click();
-  await expect(copyBtn.locator('.contact-email-feedback')).toHaveText('Copied!');
+  await expect(copyBtn.locator('.contact-email-feedback')).toHaveText('Copied');
   const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
   expect(clipboardText).toBe('work@justinclagg.com');
 });

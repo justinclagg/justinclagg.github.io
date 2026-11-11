@@ -1,7 +1,29 @@
 <div class="frame page-grid page-grid-single">
   <section class="intro">
     <h1>Contact me</h1>
-    <a class="text-link contact-email" href="mailto:justinclagg@gmail.com">justinclagg@gmail.com</a>
+    <div class="contact-email-row">
+      <button
+        type="button"
+        class="contact-email-btn"
+        (click)="copyEmail()"
+        aria-label="Copy work@justinclagg.com to clipboard"
+        title="Click to copy work@justinclagg.com">
+        <span class="contact-email-text">{{ email }}</span>
+        @if (copied()) {
+          <span class="contact-email-feedback" aria-live="polite">Copied!</span>
+        }
+      </button>
+      <a
+        class="contact-email-link"
+        [href]="'mailto:' + email"
+        aria-label="Open work@justinclagg.com in email client"
+        title="Open in email client">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <line x1="4" y1="12" x2="12" y2="4" />
+          <polyline points="6 4 12 4 12 10" />
+        </svg>
+      </a>
+    </div>
     <ul class="profile-links" aria-label="Online profiles">
       <li>
         <a href="https://github.com/justinclagg" aria-label="GitHub" title="GitHub">

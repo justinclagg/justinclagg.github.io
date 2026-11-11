@@ -63,7 +63,8 @@ test('main navigation and contact links work with JavaScript disabled', async ({
   await page.goto('/');
   await page.getByRole('navigation').getByRole('link', { name: 'Contact' }).click();
   await expect(page).toHaveURL('/contact/');
-  await expect(page.getByRole('link', { name: 'justinclagg@gmail.com' })).toHaveAttribute('href', 'mailto:justinclagg@gmail.com');
+  await expect(page.getByRole('button', { name: 'Copy work@justinclagg.com to clipboard' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open work@justinclagg.com in email client' })).toHaveAttribute('href', 'mailto:work@justinclagg.com');
   await expect(page.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', 'https://github.com/justinclagg');
   await expect(page.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', 'https://www.linkedin.com/in/justinclagg');
   await expect(page.getByRole('list', { name: 'Online profiles' })).toBeVisible();
@@ -71,6 +72,18 @@ test('main navigation and contact links work with JavaScript disabled', async ({
   await page.getByRole('navigation').getByRole('link', { name: 'About' }).click();
   await expect(page).toHaveURL('/');
   await page.close();
+});
+
+test('contact email copies to clipboard on click with visual feedback', async ({ context, page }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/contact/');
+  const copyBtn = page.getByRole('button', { name: 'Copy work@justinclagg.com to clipboard' });
+  await expect(copyBtn).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open work@justinclagg.com in email client' })).toHaveAttribute('href', 'mailto:work@justinclagg.com');
+  await copyBtn.click();
+  await expect(copyBtn.locator('.contact-email-feedback')).toHaveText('Copied!');
+  const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
+  expect(clipboardText).toBe('work@justinclagg.com');
 });
 
 test('legacy addresses reach their canonical destinations', async ({ page, request }) => {
